@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -34,34 +33,8 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             LoginTextBox.Text = File.ReadAllText("saveduser.txt");
-
-
-            File.WriteAllText("AllPolzovoteli.txt", string.Empty);
-            Process myProcess = Process.Start("get.exe", "password3.txt password3.txt");
-            do
-            {
-                if (!myProcess.HasExited)
-                {
-                    myProcess.Refresh();
-                }
-            }
-            while (!myProcess.WaitForExit(10000));
-
-            FileStream file2 = new FileStream("NewPolzovoteli.txt", FileMode.Open);
-            StreamReader reader = new StreamReader(file2);
-
-            while (reader.Peek() >= 0)
-            {
-                string stroka_iz_faila = reader.ReadLine().Trim();
-                File.AppendAllText("password3.txt", stroka_iz_faila + Environment.NewLine);
-            }
-
-            reader.Close();
-            Process.Start("put.exe", "password3.txt password3.txt");
-
- 
-            file2 = new FileStream("password3.txt", FileMode.Open); 
-            reader = new StreamReader(file2);
+            FileStream file2 = new FileStream("password3.txt", FileMode.Open); //создаем файловый поток
+            StreamReader reader = new StreamReader(file2); // создаем «потоковый читатель» и связываем его с файловым потоком 
 
             int i = 0;
             while (reader.Peek() >= 0)
@@ -74,7 +47,8 @@ namespace WindowsFormsApplication1
             }
 
             kolichestvo_userov = i;
-            reader.Close();
+            /*Console.WriteLine(reader.ReadToEnd()); //считываем все данные с потока и выводим на экран*/
+            reader.Close(); //закрываем поток
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -111,10 +85,10 @@ namespace WindowsFormsApplication1
             {
                 Chat chatForm = new Chat(LoginTextBox.Text);
                 chatForm.ShowDialog();
-	        if (savepass)
-    	        {
-	            File.WriteAllText("saveduser.txt", user);
-  	        }
+            }
+            if (savepass)
+            {
+                File.WriteAllText("saveduser.txt", user);
             }
         }
 

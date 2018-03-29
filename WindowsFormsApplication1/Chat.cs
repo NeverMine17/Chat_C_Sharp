@@ -132,7 +132,7 @@ namespace WindowsFormsApplication1
             }
             while (!myProcess.WaitForExit(10000));
 
-            FileStream file2 = new FileStream("matt1.txt", FileMode.Open);
+            FileStream file2 = new FileStream("словарь мат.txt", FileMode.Open);
             StreamReader reader1 = new StreamReader(file2);
 
             while (reader1.Peek() >= 0)
@@ -142,26 +142,9 @@ namespace WindowsFormsApplication1
             }
 
             reader1.Close();
-            /*
-            Process.Start("put.exe", "password3.txt password3.txt");
+            file2.Close();
 
- 
-            file2 = new FileStream("password3.txt", FileMode.Open); 
-            reader = new StreamReader(file2);
-
-            int i = 0;
-            while (reader.Peek() >= 0)
-            {
-                string stroka_iz_faila = reader.ReadLine().Trim();
-                string[] podstroki = stroka_iz_faila.Split(new Char[] { ' ' });
-                usery[i].login = podstroki[0];
-                usery[i].password = podstroki[1];  
-                i++;
-            }
-
-            kolichestvo_userov = i;
-            reader.Close();
-             */
+            
             ////////////////////////////////////////////////////////////////////////////////
             bedMessages[kol_vo_bed_messages] = "Сцуко"; kol_vo_bed_messages++;
             bedMessages[kol_vo_bed_messages] = "Антон"; kol_vo_bed_messages++;
@@ -217,13 +200,13 @@ namespace WindowsFormsApplication1
             bedMessages[kol_vo_bed_messages] = "Молодец"; kol_vo_bed_messages++;
             bedMessages[kol_vo_bed_messages] = "Щель"; kol_vo_bed_messages++;
 
-            bool sos = false;
-            //FileStream file2 = null;
+            bool sos;
+            FileStream file3 = null;
 
 
             try
             {
-                file2 = new FileStream("peregovory.txt", FileMode.Open); //создаем файловый поток
+                file3 = new FileStream("peregovory.txt", FileMode.Open); //создаем файловый поток
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -232,9 +215,9 @@ namespace WindowsFormsApplication1
                 return;
             }
 
-            file2.Close();
-            file2 = new FileStream("peregovory.txt", FileMode.Open); //создаем файловый поток
-            StreamReader reader = new StreamReader(file2); // создаем «потоковый читатель» и связываем его с файловым потоком
+            file3.Close();
+            file3 = new FileStream("peregovory.txt", FileMode.Open); //создаем файловый поток
+            StreamReader reader = new StreamReader(file3); // создаем «потоковый читатель» и связываем его с файловым потоком
 
             this.Height = 651;
             this.Width = 630;
@@ -285,6 +268,7 @@ namespace WindowsFormsApplication1
             }
 
             readFontFromFile();
+            file3.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -522,12 +506,38 @@ namespace WindowsFormsApplication1
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
-            bedMessages[kol_vo_bed_messages] = textBox2.SelectedText; kol_vo_bed_messages++;
+           
         }
 
         private void pictureBox_Chat_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void убратьСловоИзСловаряToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(str);
+            str = textBox2.SelectedText;
+            for (int j = 0; j < kol_vo_bed_messages; j++)
+            {
+                if (str == bedMessages[j])
+                {
+                    for (int i = j; i < kol_vo_bed_messages - 1; i++)
+                    {
+                        bedMessages[i] = bedMessages[i + 1];
+                    }
+
+                    kol_vo_bed_messages--;
+                }
+            }
+
+            textBox2_TextChanged(null, null);
+        }
+
+        private void добавитьВСловарьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bedMessages[kol_vo_bed_messages] = textBox2.SelectedText; kol_vo_bed_messages++;
+            textBox2_TextChanged(null, null);
         }
     }
 }

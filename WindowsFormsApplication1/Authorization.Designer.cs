@@ -105,6 +105,7 @@
             this.pictureBox_Log.Size = new System.Drawing.Size(183, 137);
             this.pictureBox_Log.TabIndex = 5;
             this.pictureBox_Log.TabStop = false;
+            this.pictureBox_Log.Click += new System.EventHandler(this.pictureBox_Log_Click);
             // 
             // savepassbox
             // 

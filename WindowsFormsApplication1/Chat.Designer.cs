@@ -34,6 +34,8 @@ namespace WindowsFormsApplication1
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.этоМатToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox_Chat = new System.Windows.Forms.PictureBox();
@@ -41,10 +43,10 @@ namespace WindowsFormsApplication1
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.этоМатToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Chat)).BeginInit();
+            this.убратьСловоИзСловаряToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьВСловарьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Chat)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -86,6 +88,24 @@ namespace WindowsFormsApplication1
             this.textBox2.TabStop = false;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.этоМатToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(170, 26);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // этоМатToolStripMenuItem
+            // 
+            this.этоМатToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.убратьСловоИзСловаряToolStripMenuItem,
+            this.добавитьВСловарьToolStripMenuItem});
+            this.этоМатToolStripMenuItem.Name = "этоМатToolStripMenuItem";
+            this.этоМатToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.этоМатToolStripMenuItem.Text = "Это мат (или нет)";
+            this.этоМатToolStripMenuItem.Click += new System.EventHandler(this.этоМатToolStripMenuItem_Click);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -107,7 +127,7 @@ namespace WindowsFormsApplication1
             // 
             this.button2.Location = new System.Drawing.Point(25, 22);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 32);
+            this.button2.Size = new System.Drawing.Size(220, 323);
             this.button2.TabIndex = 0;
             this.button2.TabStop = false;
             this.button2.Text = "Для слепых";
@@ -116,7 +136,7 @@ namespace WindowsFormsApplication1
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(25, 60);
+            this.button3.Location = new System.Drawing.Point(25, 381);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(198, 23);
             this.button3.TabIndex = 6;
@@ -124,20 +144,19 @@ namespace WindowsFormsApplication1
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // contextMenuStrip1
+            // убратьСловоИзСловаряToolStripMenuItem
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.этоМатToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(120, 26);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.убратьСловоИзСловаряToolStripMenuItem.Name = "убратьСловоИзСловаряToolStripMenuItem";
+            this.убратьСловоИзСловаряToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.убратьСловоИзСловаряToolStripMenuItem.Text = "Убрать слово из словаря";
+            this.убратьСловоИзСловаряToolStripMenuItem.Click += new System.EventHandler(this.убратьСловоИзСловаряToolStripMenuItem_Click);
             // 
-            // этоМатToolStripMenuItem
+            // добавитьВСловарьToolStripMenuItem
             // 
-            this.этоМатToolStripMenuItem.Name = "этоМатToolStripMenuItem";
-            this.этоМатToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.этоМатToolStripMenuItem.Text = "Это мат!";
-            this.этоМатToolStripMenuItem.Click += new System.EventHandler(this.этоМатToolStripMenuItem_Click);
+            this.добавитьВСловарьToolStripMenuItem.Name = "добавитьВСловарьToolStripMenuItem";
+            this.добавитьВСловарьToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.добавитьВСловарьToolStripMenuItem.Text = "Добавить в словарь";
+            this.добавитьВСловарьToolStripMenuItem.Click += new System.EventHandler(this.добавитьВСловарьToolStripMenuItem_Click);
             // 
             // Chat
             // 
@@ -152,8 +171,8 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.pictureBox_Chat);
             this.Name = "Chat";
             this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Chat)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Chat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,5 +192,7 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem этоМатToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem убратьСловоИзСловаряToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem добавитьВСловарьToolStripMenuItem;
     }
 }

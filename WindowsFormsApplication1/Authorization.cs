@@ -201,5 +201,10 @@ namespace WindowsFormsApplication1
         {
             File.WriteAllText("saveduser.txt", "");
         }
+
+        private void pictureBox_Log_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

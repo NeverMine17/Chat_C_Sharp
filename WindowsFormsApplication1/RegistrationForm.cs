@@ -99,7 +99,17 @@ namespace WindowsFormsApplication1
                     MessageBox.Show("Пароль занят!");
                     uzhe_byl = true;
                     break;
-                }                
+                }
+
+                if (loginTextBox.Text == "Введите логин" || ParolTextBox.Text == "Введите пароль")
+                {
+                   // if (PotParolTextBox.Text = "Повторите пароль")
+                    {
+                        MessageBox.Show("Введи данные!!!");
+                        uzhe_byl = true;
+                        break;
+                    }
+                }
             }
 
             if (!uzhe_byl)
@@ -124,6 +134,12 @@ namespace WindowsFormsApplication1
         {
             if (e.KeyChar == (int)Keys.Space)
                 e.KeyChar = '\0';
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LoginForm rf = new LoginForm();
+            rf.ShowDialog();
         }
     }       
 }
